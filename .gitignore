@@ -1,6 +1,6 @@
 target
 .settings/*
 !.settings/.jsdtscope
-.project
 .classpath
 /remote.sh
+bin/zbraStuff
