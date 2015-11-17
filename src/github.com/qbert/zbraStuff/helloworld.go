@@ -9,7 +9,7 @@ import (
 
 // Handler
 func hello(c *echo.Context) error {
-	return c.String(http.StatusOK, "Hello, World!\n")
+	return c.String(http.StatusOK, "Hello, World! I was here\n")
 }
 
 func main() {
