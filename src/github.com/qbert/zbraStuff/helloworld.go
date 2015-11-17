@@ -2,7 +2,7 @@ package main
 
 import (
 	"net/http"
-
+	"os"
 	"github.com/labstack/echo"
 	mw "github.com/labstack/echo/middleware"
 )
@@ -24,5 +24,14 @@ func main() {
 	e.Get("/", hello)
 
 	// Start server
-	e.Run(":1323")
+	var port = os.Getenv("OPENSHIFT_GO_PORT")
+	if(port == "") {
+		port = "1323"
+	}
+	var ip = os.Getenv("OPENSHIFT_GO_IP")
+	if(ip == "") {
+		ip = "localhost"
+	}
+	
+	e.Run(ip+":"+port)
 }
