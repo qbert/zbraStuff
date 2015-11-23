@@ -8,7 +8,7 @@ import (
 	"github.com/labstack/gommon/log"
 	_ "github.com/go-sql-driver/mysql"
     "github.com/jinzhu/gorm"
-    "github.com/qbert/zbraStuff/models"
+    "zbraStuff/models"
 )
 
 var  (
