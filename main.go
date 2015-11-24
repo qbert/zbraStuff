@@ -31,7 +31,7 @@ func config_env() {
 	dbpassword = get_env("OPENSHIFT_MYSQL_DB_PASSWORD", "C9_DB_PASSWORD", "neinegal")
 	dbhost     = get_env("OPENSHIFT_MYSQL_DB_HOST", "C9_DB_HOST", "localhost")
 	dbport     = get_env("OPENSHIFT_MYSQL_DB_PORT", "C9_DB_PORT", "3306")
-	dbname     = get_env("OPENSHIFT_MYSQL_DB_PASSWORD", "C9_DB_NAME", "zbrastuff_db")
+	dbname     = get_env("OPENSHIFT_MYSQL_DB_NAME", "C9_DB_NAME", "zbrastuff_db")
 }
 
 func config_db() {
