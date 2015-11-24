@@ -44,11 +44,11 @@ func config_db() {
 	dbconnect += "@"
 	
 	if dbhost != "" {
-		dbconnect += dbhost
-		
-	}
-	if dbport != "" {
-		dbconnect += ":"+dbport
+		dbconnect += "tcp("+dbhost
+		if dbport != "" {
+			dbconnect += ":"+dbport
+		}
+		dbconnect += ")"
 	}
 	dbconnect += "/"+dbname+"?charset=utf8&parseTime=True"
 	
