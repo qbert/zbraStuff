@@ -1,7 +1,5 @@
-.c9
 target
 .settings/*
 !.settings/.jsdtscope
 .classpath
 /remote.sh
-bin/zbraStuff
