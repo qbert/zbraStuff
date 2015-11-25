@@ -15,12 +15,12 @@ clean:
 deploy: build
 	git add -u
 	git commit -m "Deployment"
-	git push openshift
+	git push openshift master
 
 github: build
 	git add -u
 	git commit -m "Deployment"
-	git push github
+	git push github master
 
 coverage-test:
 	go test -coverprofile=coverage.out
