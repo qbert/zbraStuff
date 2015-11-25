@@ -3,13 +3,14 @@ default: build
 build:
 	go fmt
 	go vet
-	go build 
+	go build --ldflags="-X github.com/qbert/heartbeat-golang.CommitHash=`git rev-parse HEAD`"
 
 test: build
 	go test
 
 clean:
 	rm zbraStuff
+	rm coverage.out
 
 deploy: build
 	git add -u

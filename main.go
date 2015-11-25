@@ -6,6 +6,7 @@ import (
 	"github.com/labstack/echo"
 	mw "github.com/labstack/echo/middleware"
 	"github.com/labstack/gommon/log"
+	heartbeat "github.com/qbert/heartbeat-golang"
 	"github.com/qbert/zbraStuff/models"
 	"net/http"
 	"syscall"
@@ -83,7 +84,13 @@ func config_echo() {
 	e.Get("/", hello)
 }
 
+func run_heartbeat() {
+	log.Info("Running Heartbeat on:%s:%s/heartbeat", ip, port)
+	e.Get("/heartbeat", heartbeat.Handler)
+}
+
 func run_echo() {
+	log.Info("Running Echo Server on:%s:%s", ip, port)
 	e.Run(ip + ":" + port)
 }
 
@@ -93,6 +100,7 @@ func main() {
 	config_db()
 	config_echo()
 
+	run_heartbeat()
 	run_echo()
 }
 
