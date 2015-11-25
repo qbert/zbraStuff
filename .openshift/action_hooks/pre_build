@@ -2,7 +2,8 @@
 
 cd $OPENSHIFT_REPO_DIR
 
+echo Generating git rev file for $(git rev-parse HEAD)
 cat <<EOF > git_rev.go
 package main
-var GitRev = \"$('git rev-parse HEAD')\"
+var GitRev = \"$(git rev-parse HEAD)\"
 EOF
