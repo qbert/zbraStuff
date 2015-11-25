@@ -24,18 +24,18 @@ var (
 	db         *gorm.DB
 )
 
-func config_env() {
-	port = get_env("OPENSHIFT_GO_PORT", "C9_PORT", "1323")
-	ip = get_env("OPENSHIFT_GO_IP", "C9_IP", "localhost")
+func configEnv() {
+	port = getEnv("OPENSHIFT_GO_PORT", "C9_PORT", "1323")
+	ip = getEnv("OPENSHIFT_GO_IP", "C9_IP", "localhost")
 
-	dbuser = get_env("OPENSHIFT_MYSQL_DB_USERNAME", "C9_USER", "qbert")
-	dbpassword = get_env("OPENSHIFT_MYSQL_DB_PASSWORD", "C9_DB_PASSWORD", "neinegal")
-	dbhost = get_env("OPENSHIFT_MYSQL_DB_HOST", "C9_DB_HOST", "localhost")
-	dbport = get_env("OPENSHIFT_MYSQL_DB_PORT", "C9_DB_PORT", "3306")
-	dbname = get_env("OPENSHIFT_MYSQL_DB_NAME", "C9_DB_NAME", "zbrastuff_db")
+	dbuser = getEnv("OPENSHIFT_MYSQL_DB_USERNAME", "C9_USER", "qbert")
+	dbpassword = getEnv("OPENSHIFT_MYSQL_DB_PASSWORD", "C9_DB_PASSWORD", "neinegal")
+	dbhost = getEnv("OPENSHIFT_MYSQL_DB_HOST", "C9_DB_HOST", "localhost")
+	dbport = getEnv("OPENSHIFT_MYSQL_DB_PORT", "C9_DB_PORT", "3306")
+	dbname = getEnv("OPENSHIFT_MYSQL_DB_NAME", "C9_DB_NAME", "zbrastuff_db")
 }
 
-func config_db() {
+func configDb() {
 	var dbconnect string
 
 	dbconnect = dbuser
@@ -72,7 +72,7 @@ func config_db() {
 	db = &dbm
 }
 
-func config_echo() {
+func configEcho() {
 	// Echo instance
 	e = echo.New()
 
@@ -84,27 +84,27 @@ func config_echo() {
 	e.Get("/", hello)
 }
 
-func run_heartbeat() {
+func runHeartbeat() {
 	log.Info("Running Heartbeat on:%s:%s/heartbeat", ip, port)
 	e.Get("/heartbeat", heartbeat.Handler)
 }
 
-func run_echo() {
+func runEcho() {
 	log.Info("Running Echo Server on:%s:%s", ip, port)
 	e.Run(ip + ":" + port)
 }
 
 func main() {
 
-	config_env()
-	config_db()
-	config_echo()
+	configEnv()
+	configDb()
+	configEcho()
 
-	run_heartbeat()
-	run_echo()
+	runHeartbeat()
+	runEcho()
 }
 
-func get_env(e1, e2, d string) string {
+func getEnv(e1, e2, d string) string {
 
 	if r, found := syscall.Getenv(e1); found {
 		return r

@@ -1,6 +1,9 @@
 default: build
 
-build:
+depend:
+	go get ./...
+	
+build: depend
 	go fmt
 	go vet
 	go build --ldflags="-X github.com/qbert/heartbeat-golang.CommitHash=`git rev-parse HEAD`"
